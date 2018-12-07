@@ -1,8 +1,8 @@
 function Complexity()
 {
-	var input = document.getElementById("complexity")
-	var errStr = document.getElementById("error");
-	input.oninput = function()
+	var input = document.getElementById("complexity");//sets the complexity text area to a variable
+	var errStr = document.getElementById("error"); //sets text to the right of the complexity to a variable
+	input.oninput = function()//function to make sure the value of the complexity is a valid input
 	{
 		value = input.value;
 		if (value.length < 1)

@@ -9,31 +9,4 @@ function CreateBlock(String) //When initializes creates the first block, when us
 		one = one.getNext();//sets one as the newly created block
 		return temp;// returns the current block
 	}
-	/*
-	one = new Block();
-	this.qwer = "Creator";
-	this.build = null;
-
-	//var Build =  RunBuild;
-
-	/*Build = function()
-	{
-		/*one.next = new Block();
-		var temp = one;
-		one = one.next;
-		return temp;
-		alert(this.qwer +"-2");
-		return one;/*
-		alert("Run");
-    }*/
-    
 }
-	
-/*function Build()
-{
-	alert("Run");
-	one.next = new Block();
-	var temp = one;
-	one = one.next;
-	return temp;
-}*/

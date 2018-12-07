@@ -4,8 +4,8 @@ function HashFunctionV2(String, Int)//Calculates the hash of a block using Sha25
 	binStr = binStr.concat(intToBinStr(Int), "1");//adds the nonce and a 1 to end of the binary number
 
 
-	var blocks = makeBlocks(binStr);
-																											 //the length is equal to 512
+	var blocks = makeBlocks(binStr);// makes a block from the binStr into a length a multiple of 512
+																											
 	var h = //the initial hash values in binary format
 		["01101010000010011110011001100111", "10111011011001111010111010000101", "00111100011011101111001101110010", "10100101010011111111010100111010"
 		,"01010001000011100101001001111111", "10011011000001010110100010001100", "10011011000001010110100010001100", "01011011111000001100110100011001"];	
@@ -33,7 +33,7 @@ function HashFunctionV2(String, Int)//Calculates the hash of a block using Sha25
 	return remove(h.join(),",");
 }
 
-function toBinaryString(String, LenStr, IntI)//converts a String to binary string format format, String is the String getting converted
+function toBinaryString(String, LenStr, IntI)//converts a String to binary string format , String is the String getting converted
 {											 //LenStr is the length of the string, IntI is the itteration 
 	if (IntI < LenStr)
 	{
@@ -46,7 +46,7 @@ function toBinaryString(String, LenStr, IntI)//converts a String to binary strin
 	return String; 
 }
 
-function sha256(Blocks, IntI, BSize, H, K)
+function sha256(Blocks, IntI, BSize, H, K)//Runst the Sha256 algorithm, IntI is the itteration, BSize is block size
 {
 	if (IntI < BSize)
 	{
@@ -68,14 +68,14 @@ function createWords(Words, IntI)
 	return Words;
 }
 
-function sumBinary(Int, Fct)
+function sumBinary(Int, Fct)//sums binary strings together
 {
 	Int = Int.map((a) => parseInt(a,2));
 	var sum = Int.reduce((a, b) => a + b, 0);
 	return Fct(sum);
 }
 
-function to32(Str)
+function to32(Str)//Shortens a string to 32 characters from the end
 {
 	Str = "0000000000000000000000000000000".concat(Str.toString(2));
 	return Str.slice(Str.length - 32, Str.length)
@@ -90,7 +90,7 @@ function xOr(String0, String1, String2, IntI)//bitwise XOR, takes three inputs, 
 	return "";
 }
 
-function hashing(H, K, IntI)
+function hashing(H, K, IntI)//part of the sha256 algorith
 {
 	if (IntI < 64)
 	{
@@ -156,7 +156,7 @@ function updateH(AH, H, IntI)
 	return H;
 }
 
-function strDecToStrBinArr(String)
+function strDecToStrBinArr(String)//converts a String to its binary equivalents from each characters ascii code
 {
 	if (String.length > 0)
 	{
@@ -165,19 +165,19 @@ function strDecToStrBinArr(String)
 	return remove(String);
 }
 
-function intToBinStr(Int)
+function intToBinStr(Int)//converts a decimal number to binary 
 {
 
 	return parseInt(Int, 10).toString(2);
 }
 
-function makeBlocks(binStr)
-{
-	var str = binStr.concat(numOfZeros(binStr.length));
+function makeBlocks(binStr)//takes a binary string lengthns it with zeros to make it a multiple of 512, then returns the string in 
+{						   //in an array each slot has 512 length
+	var str = binStr.concat(numOfZeros(binStr.length)); 
 	return str.match(/.{1,512}/g);
 }
 
-function numOfZeros(Int)
+function numOfZeros(Int)//creats the number of zeros necessary to make a string length a multiple of 512
 {
 	return "0".repeat(512 - (Int % 512));
 }
@@ -213,17 +213,17 @@ function sum0(String)
 }
 
 
-function ChkGrtrThanOne(Int)
+function ChkGrtrThanOne(Int)//checks if value is greater than 1, return a string, 1 for true, 0 for false
 {
 	return (0 + (Int > 1)).toString()
 }
 
-function ChkEqlToTwo(Int)
+function ChkEqlToTwo(Int)//checks if value is equal to 2, return a string, 1 for true, 0 for false
 {
-	return (0 + (Int == 1)).toString()
+	return (0 + (Int == 2)).toString()
 }
 
-function remove(String, Char)
+function remove(String, Char)//removes all occurances of a charcter from a string
 {
 	var num = String.indexOf(Char);
 	if (num > -1)
@@ -233,7 +233,7 @@ function remove(String, Char)
 	return String;
 }
 
-function checkSize(String, Num, IntI)
+function checkSize(String, Num, IntI)//checks if String length is == num and adds leading zeros until its true
 {
 	if (String.length + IntI < Num)
 	{

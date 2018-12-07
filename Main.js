@@ -49,13 +49,9 @@ function Main()
 								}
 							}
 						}
+						j--;
 						document.getElementById("nonce"+bNum).innerHTML = j.toString();
 						document.getElementById("hash"+bNum).innerHTML = block.getHash();
-						alert(bNum == 0 || document.getElementById(bNum-1).style.backgroundColor == "LightGreen");
-						if (bNum == 0 || document.getElementById(bNum-1).style.backgroundColor == "LightGreen")
-						{
-							document.getElementById("D"+bNum).style.backgroundColor = "LightGreen";
-						}
 					}
 					else
 					{
@@ -67,7 +63,7 @@ function Main()
 	};
 }
 
-function calcHash(Block, Int)
+function calcHash(Block, Int)//calculates and returns the hash of a block, Int is the nonce value
 {
 	return Block.calculateHash(Block.getLast().getHash(),Int)
 }
@@ -77,19 +73,19 @@ function getLastHash(Block)
 	return Block.getLast().getHash();
 }
 
-function tableRowSize(Table, Row)
+function tableRowSize(Table, Row)//gets the number of cells in a table row
 {
 	return Table.rows[Row].cells.length
 }
 
-function addBR(Table, Row)
+function addBR(Table, Row)//adds a Break line to a table
 {
 	Table.rows[Row].innerHTML = Table.rows[Row].innerHTML.concat("<br>");
 }
 
-function addBlock(Table, Row, NumStr, Hash)
+function addBlock(Table, Row, NumStr, Hash)//creates the visual for a block on the webpage in the browser. 
 {
-	Table.rows[Row].innerHTML = Table.rows[Row].innerHTML.concat("<td width=\"0\" valign=\"top\" align=\"left\"><div id=\"D"+NumStr+"\"><span id=\"name"
+	Table.rows[Row].innerHTML = Table.rows[Row].innerHTML.concat("<td valign=\"top\" align=\"left\"><div id=\"D"+NumStr+"\"><span id=\"name"
 			+NumStr+"\">Block "+NumStr+"</span><br>Nonce: <span id=\"nonce"+NumStr+"\">0</span><br>Data<textarea cols=\"68\" id=\"txt"+NumStr+"\"></textarea><br>"
 			+"Hash: <span id=\"hash"+NumStr+"\">"+Hash+"</span><br><button type=\"button\" id=\"button"+NumStr+"\"/>Solve</button></div></td>");
 }
