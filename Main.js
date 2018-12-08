@@ -24,6 +24,15 @@ function Main()
 			button = document.getElementById("button"+i);
 			var block = blocks[i];
 			block.setNum(i);
+			text = document.getElementById("txt"+i);
+			text.oninput = (function(block)
+			{
+				return function()
+				{
+					data = document.getElementById("txt"+block.getNum())
+					block.setData(data.value);
+				};
+			})(block);
 			button.onclick = (function(block)
 			{
 				return function()
@@ -65,7 +74,7 @@ function Main()
 
 function calcHash(Block, Int)//calculates and returns the hash of a block, Int is the nonce value
 {
-	return Block.calculateHash(Block.getLast().getHash(),Int)
+	return Block.calculateHash(Block.getLast().getHash() + Block.getData(),Int)
 }
 
 function getLastHash(Block)
